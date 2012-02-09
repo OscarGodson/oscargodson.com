@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OscarGodson.js | Unmasking JSONP</title>
+    <link href="/css/main.css" rel="stylesheet">
+    <meta name="description" content="This post is about JSONP, or in jQuery you might know it as $.getJSON() and explains how JSONP actually works without jQuery.">
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <header>
+         <require src="/partials/header.html">
+        </header>
+        <div class="left-col">
+          <article id="content">
+            <h1>Unmasking JSONP</h1>
+            <h2>Why</h2>
+            <p>This post is about JSONP, or in jQuery you might know it as <code>$.getJSON()</code>. I was trying to find a good tutorial or just a small function to allow me to do JSONP requests without jQuery because I was writing a JavaScript library of my own for a client. After numerous Google and StackOverflow searches I discovered every result was a jQuery <code>$.getJSON()</code> tutorial. I figured I can't be the only one using JSONP outside of jQuery. So, in this tutorial I'll explain what it is, why it works, and writing your own JSONP library to handle it.</p>
+            <p></p>
+            <h2>What is JSONP</h2>
+            <p>JSONP is "JSON with padding". What you need to know is that JSONP is a security hack. It was solution thought up to get around "<a href="http://en.wikipedia.org/wiki/Same_origin_policy">same origin policy</a>" in browsers. In short, the same origin policy in browsers prevents developers and, more importantly, hackers from inserting JavaScript into their site that they can use to hack your site.</p>
+            <p>In technical terms, JSONP is simply when you insert a script into your site that has a source of another website just like what most of you have done with <code>&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"&gt;&lt;/script&gt;</code> which inserts jQuery from Google's servers. The only difference is that rather than executing a script it actually just returns JSON in a function that you call to get the raw JSON / JavaScript object.</p>
+            <h2>How it Works</h2>
+            <p>So what does that look like? Here is JSONP request to Twitter for my timeline: <a href="http://api.twitter.com/1/statuses/user_timeline.json?screen_name=oscargodson&amp;callback=JSONP123"></a><a href="http://api.twitter.com/1/statuses/user_timeline.json?screen_name=oscargodson&amp;callback=JSONP123">http://api.twitter.com/1/statuses/user_timeline.json?screen_name=oscargodson&amp;callback=JSONP123</a></p>
+            <p>Notice the first word (name of the function) in that link is <code>JSONP123</code> and that it matches the <code>callback=</code> value in the URL. This matches a function you defined on your side as <code>var JSONP123 = function(json){ console.log(json) }</code> so that when that Twitter <code>&lt;script&gt;</code> loads, it triggers your function and does what you want with the JSON inside. In that sample code, when the Twitter script loads, it will show the JSON returned from Twitter in your console.</p>
+            <h2>The Code</h2>
+            <p>With that knowledge lets make a super simple call to Twitter, and display your avatar in your <code>&lt;body&gt;</code>. We'll need to first create a function to handle the returned result then a script tag to grab the JSON.</p>
+            <p>The code in it's simplest, non-dynamic, terms:</p>
+<pre class="javascript">//Var name is used in the callback=X in the URL of the generated script
+var JSONP = function(json){
+  //"json" will the JSON returned from Twitter, so
+  //json[0].user.profile_image_url will be the URL to the avatar image
+  document.getElementById('pic').innerHTML = '';
+}
+
+//Here we create a script element and save it to the scriptTag variable
+var scriptTag = document.createElement('script');
+
+//After it's created, we set the src attribute to the Twitter timeline we
+//want. Change the screen_name for yours if you want just make sure to
+//match the callback=JSONP to match the function above.
+scriptTag.setAttribute("src", "http://api.twitter.com/1/statuses/user_timeline.json?screen_name=oscargodson&amp;callback=JSONP");
+
+//The very last step, simply add it to our  for processing.
+document.getElementsByTagName("head")[0].appendChild(scriptTag);</pre>
+
+            <p>Here is a <a href="http://jsbin.com/ozowu4/2/">live sample</a>. You can <a href="http://jsbin.com/ozowu4/2/edit">edit the source</a> as well.</p>
+            <p>This is great if you are going to be using JSONP once, but you're going to use JSONP more and more throughout the years as a developer. Let's build ourself a tiny JSONP library you can keep on reusing. Here's the library we are going to build:</p>
+<pre class="javascript">(function(window, undefined) {
+  var JSONP = function(url, method, callback){
+    url = url || '';
+    method = method || '';
+    callback = callback || function(){};
+
+    if(typeof method == 'function'){
+      callback = method;
+      method = 'callback';
+    }
+
+    var generatedFunction = 'jsonp'+Math.round(Math.random()*1000001);
+
+    window[generatedFunction] = function(json){
+      callback(json);
+      delete window[generatedFunction];
+    };
+
+    if(url.indexOf('?') === -1){ url = url+'?'; }
+    else{ url = url+'&amp;'; }
+
+    var jsonpScript = document.createElement('script');
+    jsonpScript.setAttribute("src", url+method+'='+generatedFunction);
+    document.getElementsByTagName("head")[0].appendChild(jsonpScript);
+  }
+  window.JSONP = JSONP;
+})(window);</pre>
+
+            <p>I'll step through it and hopefully give you a good understanding of what each piece does.</p>
+            <p>The first step in building any JavaScript library is the skeleton. The skeleton looks like this:</p>
+<pre class="javascript">(function(window, undefined){
+  var JSONP = function(url, method, callback){
+    url = url || '';
+    method = method || '';
+    callback = callback || function(){};
+  }
+})(window);</pre>
+
+            <p>The first line:</p>
+            <pre class="javascript">(function(window, undefined){</pre>
+
+            <p>This sets up the anonymous function. It's considered anonymous because it has no name. If it had a name it'd look like the normal <code>function foo(){}</code> or <code>var foo = function(){}</code>, but instead this is <code>(function(){})</code>. Since it has no name you call it by attaching a <code>()</code> at the end like <code>(function(){})()</code> just like you'd do <code>function foo(){}; foo()</code>, but it has no name so you just do <code>()</code>. We do this because we don't want our variables to collide with the other variables the website we're working on might have. If you don't understand what I'm talking about, that's fine. JavaScript variable scope is confusing, but out of the scope (no pun intended) of this article. For more info on JavaScript scopes check out this article by <a href="http://skilldrick.co.uk/2010/11/a-brief-introduction-to-closures/">Skilldrick</a>. The <code>window</code> and <code>undefined</code> are in there for the same reasons as jQuery. Explanation of that on this great <a href="http://stackoverflow.com/questions/2716069/how-does-this-javascript-jquery-syntax-work-function-window-undefined">StackOverflow thread</a>.</p>
+            <p>The next line:</p>
+            <pre class="javascript">var JSONP = function(url, method, callback){</pre>
+
+            <p>This is simply the name of the library we want with the parameters you want to allow. You'd use the library like:</p>
+            <pre class="javascript">JSONP('http://site.com',function(json){ console.log(json) });</pre>
+
+            <p>The <code>method</code> parameter is optional. We'll talk more about that later, but for now I just wanted you to see what this line is all about.</p>
+            <p>Next we have this chunk of code:</p>
+<pre class="javascript">url = url || '';
+method = method || '';
+callback = callback || function(){};</pre>
+
+            <p>If you've never seen the <code>foo = foo || 'bar';</code> syntax before, it's simply saying "url = url if it's set, otherwise use '' if it's not". This is great shorthand for <code>if(!url){url = '';}</code>; For the <code>callback</code> parameter we set it as a blank function that does nothing so if it's not set it doesn't break anything expecting a function rather than a string or integer for example.</p>
+            <p>The next step to building our library is making any optional parameters optional. The only one we really need to catch is <code>method</code>. Again, I'll explain what this is exactly further down, but to make it optional we'll do a check to see if it's a function. If it's a function we know the developer wanted to omit the <code>method</code> string and instead he wrote the callback function in it's place like <code>JSONP('http://somesite.com',function(){})</code> rather than <code>JSONP('http://somesite.com','jsoncallback',function(){})</code>.</p>
+<pre class="javascript">if(typeof method == 'function'){ //If method wasn't a string, but a function.
+  callback = method; //Since the "method" is actually the callback, we switch it.
+  method = 'callback'; //Next, we set a default method ourself
+}</pre>
+
+            <p>Because this library is all about being able to have lots of JSONP requests on a single page at any given time, we need to make sure every callback function we define for the API's JSONP service we're using (like Twitter) is completely random. You can do this lots of ways but I do it like this:</p>
+            <pre class="javascript">var generatedFunction = 'jsonp'+Math.round(Math.random()*1000001)</pre>
+
+            <p>That'll output something like <code>jsonp204309</code>. <code>Math.random()</code> gives back a value such as <code>0.2043090183287859</code>, but then we multiply that by <code>1000001</code> and we get <code>204309.222637804228786</code>. Since we are going to use this as a function name, we need to remove the <code>.</code> in the value, so we use <code>Math.round()</code> which then gives us (finally) a nice <code>204309</code>.</p>
+            <p>After we have the function name we need to give this function to the browser somehow. Then, so we don't clutter up everything, we need to delete it when we are done. Again, there are a few ways to do this, but I find the most elegant way is like this:</p>
+<pre class="javascript">window[generatedFunction] = function(json){
+  callback(json);
+  delete window[generatedFunction];
+};</pre>
+
+            <p>This gives the <code>window</code> (your website) the function we created and we make it into a function with one parameter, <code>json</code>. We also delete the function after it's run. Clean and simple. This will run once our script tag is generated and inserted into the DOM.</p>
+            <p>Before we create the script tag and execute everything, we need to do a tiny test on the URL. We need to check if the URL provided does or doesn't have a <code>?</code> in it already. The reason being is that if we give it a URL like <code>http://mysite.com/api/</code> as the JSONP API source, it'll work fine because we'll modify the URL to be <code>http://mysite.com/api/?callback=jsonp204309</code>, however, many times API's have other parameters to set such as the format or anything else and the URL could end up being like <code>http://mysite.com/api/?format=json</code> and we don't want the generated URL to be <code>http://mysite.com/api/?format=json?callback=jsonp204309</code> which wont work. We need to switch that for a <code>&amp;</code>. The fix is surprisingly simple. We can just do a check if a <code>?</code> exists in the url, and if not, add the <code>?</code> otherwise if it does add a <code>&amp;</code> instead.</p>
+<pre class="javascript">if(url.indexOf('?') === -1){ url = url+'?'; }
+else{ url = url+'&amp;'; }</pre>
+
+            <p>Now it's time for the magic. We create the <code>&lt;script&gt;</code> tag dynamically with JavaScript by using <code>document.createElement()</code> then we set the 'src' attribute to our <code>url</code> + <code>method</code> + the random function name (<code>jsonp204309()</code>). The we grab the <code>&lt;head&gt;</code> and append our newly created <code>&lt;script&gt;</code> tag. It'd end up looking something like <code>&lt;script src="http://mysite.com/api/?callback=jsonp204309"&gt;&lt;/script&gt;</code>.</p>
+<pre class="javascript">var jsonpScript = document.createElement('script');
+jsonpScript.setAttribute("src", url+method+'='+generatedFunction);
+document.getElementsByTagName("head")[0].appendChild(jsonpScript);</pre>
+
+            <p>Finally I'll explain what the <code>method</code> parameter is for. The <code>method</code> is for APIs that don't use the standard <code>callback=</code> format in the URL. For example, Flickr's API requires <code>jsoncallback=</code>. If you do <code>callback=</code> it'll break the API and it won't work. If you go to the jQuery <code>$.getJSON()</code> API documentation page the example is using the Flickr API and you'll notice the word <code>jsoncallback=?</code> in the URL they are using as an example.</p>
+            <p>The final step is to expose this to the DOM. As you read earlier we wrapped this in an anonymous function like <code>(function(){})()</code>. Well, somehow we need to give our <code>JSONP()</code> function/var to the DOM and we can do it by writing (like jQuery does) <code>window.JSONP = JSONP;</code>. This gives our JSONP function to the window (your website) so whenever you or any other developer writes <code>JSONP()</code> in their scripts it'll run the code hidden in this anonymous function. Cool aye?</p>
+            <h2>Conclusion</h2>
+            <p>So what does this all look like completed? I've <a href="https://github.com/OscarGodson/JSONP">uploaded it to GitHub</a> (feel free to fork it and send pull requests) and here is a <a href="http://jsbin.com/aciku5/">live sample</a> and <a href="http://jsbin.com/aciku5/edit">the code</a> calling my last tweet and a photo from my Flickr stream.</p>
+            <p>While this script is actually fairly small (less than 1kb compressed), it's pretty tricky and thats why people just use the jQuery version. The jQuery version does have some other cool features like passing a JS object like <code>{name:'oscar',foo:'bar'}</code> and it modifies the URL to be <code>http://somesite.com?name=oscar&amp;foo=bar&amp;callback=jsonp123456</code>, but that's a whole 'nother post and it's not really needed.</p>
+          </article>
+        </div>
+        <div class="right-col">
+          <require src="/partials/sidebar.html">
+        </div>
+        <br class="clear">
+         <footer>
+          <require src="/partials/footer.html">
+        </footer>
+      </div>
+    </div>
+    <script src="/js/libs/libs.js"></script>
+    <script src="/js/app.js"></script>
+  </body>
+</html>

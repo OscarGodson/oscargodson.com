@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OscarGodson.js | Making Vimeo Videos Bigger Than 500px on Tumblr</title>
+    <link href="/css/main.css" rel="stylesheet">
+    <meta name="description" content="A friend was searching everywhere on how to modify Tumblr's themes so that videos could be larger than 500px which is an arbitrary max size they set so I wrote him a script to do it.">
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <header>
+          <require src="/partials/header.html">
+        </header>
+        <div class="left-col">
+          <article id="content">
+            <h1>Making Vimeo Videos Bigger Than 500px on Tumblr</h1>
+            <p>A friend, <a href="http://twitter.com/robalan">@robalan</a>, was searching everywhere on how to modify Tumblr's themes so that videos could be larger than 500px which is an arbitrary max size they set. There were a few scripts out there that were floating around but didn't work and it also looked like Tumblr was blocking jQuery or something because I we couldn't get jQuery working at all on the site. CSS might have worked, but the issue was it didn't scale to 16:9 dynamically.</p>
+            <p>In the end, I ended up with this little snippet and it works like a charm:</p>
+<pre class="javascript">/**
+ * Version 1.0
+ * Makes Vimeo videos on Tumblr larger than the max of 500px that Tumblr forces
+ * Change the 650 to whatever you want, but do NOT add px or %
+ * The height, by default, is set to auto which will calculate the 16:9 video size.
+ * You can set the height to a static number as well if you want.
+ * If you have any questions feel free to ask me: @oscargodson | oscargodson.com
+ */
+(function(){
+  var iframes = document.body.getElementsByTagName('iframe')
+  ,   newVimeoWidth = 650
+  ,   newVimeoHeight = 'auto';
+  for(x in iframes){
+    if(iframes[x].src &amp;&amp; iframes[x].src.indexOf('player.vimeo.com') &gt; -1){
+      if(newVimeoHeight == 'auto'){
+        newVimeoHeight = ( newVimeoWidth * 9 ) / 16;
+      }
+      iframes[x].width = newVimeoWidth;
+      iframes[x].height = newVimeoHeight
+    }
+  }
+})();</pre>
+
+            <p>Here's an example page:<br><a href="http://oscarsdevtumblr.tumblr.com/">http://oscarsdevtumblr.tumblr.com/</a></p>
+          </article>
+        </div>
+        <div class="right-col">
+          <require src="/partials/sidebar.html">
+        </div>
+        <br class="clear">
+         <footer>
+          <require src="/partials/footer.html">
+        </footer>
+      </div>
+    </div>
+    <script src="/js/libs/libs.js"></script>
+    <script src="/js/app.js"></script>
+  </body>
+</html>
