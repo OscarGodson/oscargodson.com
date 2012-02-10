@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OscarGodson.js | What the Fuck is Prototypal Inheritance - Part 1</title>
+    <link href="/css/main.css" rel="stylesheet">
+    <!--<script type="text/javascript">var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-4491651-1']);_gaq.push(['_trackPageview']);(function() {var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);})();</script>-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <header>
+          <a href="/"><h1>OscarGodson.js</h1></a>
+        </header>
+        <div class="left-col">
+          <article id="content">
+                        <h1>What the Fuck is Prototypal Inheritance - Part 1</h1>
+            <p>Prototypal inheritance is the the key to understanding JavaScript. JavaScript is a prototypal language meaning it uses <code>__prototype__</code>s to allow Objects to inherit from other Objects. Most languages you read about use classical inheritance, or, classes. Prototypal languages are actually a lot easier to understand and require a lot less code. There's a minor performance hit of prototypal languages vs. classical ones, but it's tiny.</p>
+            <p>There's a lot of articles about JavaScript and prototypes but they all seem to make it super confusing by using real world objects like cars, adding models and colors and stupid shit like that. I'll try to explain it with an extremely simple calculator.</p>
+            <h2>Lets Get This Shit Rolling</h2>
+            <p>First thing is we need to define the object we're going to build off of. In this case we will call it <code>Calc</code>. By convention, you should use camelCase when defining your starting prototype and use a capital letter at the start too. I.e. <code>CoolLibraryName</code>.</p>
+            <h3>Setup the Constructor</h3>
+            <p>So, here we go</p>
+<pre class="javascript">var Calc = function(){
+  this.sum = 0;
+  return this;
+}</pre>
+            <p>Above is pretty simple. This is called our Constructor as it constructs our base object, <code>Calc()</code>. Inside <code>this</code> is referencing itself. It's saying "this calculator" and <code>this.sum = 0</code> is saying, "this calculator's sum is 0". Easy enough.</p>
+            <h3>Add Some Methods</h3>
+            <p>What good is a calculator though if you can't even fucking calculate anything? The first thing we should add is a way to add and we need a way to return the value we're currently at. Like hitting the equals button on a calculator. We're going to add methods to our <code>Calc()</code>. Methods are exactly that, methods for doing "stuff" with our Constructor.</p>
+<pre class="javascript">Calc.prototype.equals = function(){
+  return this.sum; //Get our current Calc()s value and return it
+}
+
+Calc.prototype.add = function(n){
+  this.sum = this.sum + n; //Add N to to our current Calc()s sum.
+  return this; //Return Calc() to do more operations
+}</pre>
+            <p>First, we have our <code>equals()</code> method which just returns <code>this.sum</code> which, by default, our Constructor sets it to 0. Next we add an <code>add()</code> method which takes the <code>Calc()</code>s sum and adds <code>n</code> to it. So, <code>new Calc().add(1).add(2).equals()</code> would return 3 (0 + 1 + 2 = 3)</p>
+            <p>Returning <code>this</code> allows us to "chain" our methods like I showed above with <code>.add(1).add(2).equals()</code>. It chains because <code>this</code> is our <code>Calc()</code> so you can do <code>add()</code> as many times as you want because when you add it adds the number then gives back the <code>Calc()</code> to you. It's the same as <code>Calc().add(); Calc().add()</code>, etc. You can't do <code>add()</code> after <code>equals()</code> like <code>equals().add()</code> tho because we're returning a number (<code>this.sum</code>) and not the <code>Calc()</code>.</p>
+            <p>For fun we can add some more methods for subtract, multiply, and divide:</p>
+<pre class="javascript">Calc.prototype.subtract = function(n){
+  this.sum = this.sum - n;
+  return this;
+}
+
+Calc.prototype.multiply = function(n){
+  this.sum = this.sum * n;
+  return this;
+}
+
+Calc.prototype.divide = function(n){
+  this.sum = this.sum / n;
+  return this;
+}</pre>
+            <h3>Actually Using the Damn Thing</h3>
+            <p>Now that it's all done, you can put all this JS into a file or paste it into a <code>&lt;script&gt;</code> tag and start playing with it. To actually use the thing you make a <code>new Calc</code> then you can run <code>console.log()</code> on it to see the value. For example:</p>
+<pre class="javascript">console.log(new Calc().add(2).multiply(3).subtract(2).divide(2).equals());
+
+//This would be the right way to do it by saving it to a var.
+//This allows us to reference this specific Calc later whenever we want
+var myCalc = new Calc();
+myCalc.add(2).multiply(3).subtract(2).divide(2).equals();
+console.log(myCalc);</pre>
+            <p>Make sure you always use the word <code>new</code> and never forget the <code>var</code> keyword on any variables! More on those two things later, but for now, never do it.</p>
+
+            <h2>Don't Forget the Fucking Script!</h2>
+            <a href="https://gist.github.com/e518c2676e8eb64fe268">Here's the full example</a>
+          </article>
+        </div>
+        <div class="right-col">
+          <aside>
+  <nav id="og-recent-posts">
+    <h2>Recent Posts</h2>
+    <ol></ol>
+  </nav>
+</aside>
+<aside>
+  <nav>
+    <h2>Code</h2>
+    <ol>
+      <li><a href="http://github.com/OscarGodson/jKey">jKey</a></li>
+      <li><a href="http://github.com/OscarGodson/Yodel">Yodel</a></li>
+      <li><a href="http://github.com/OscarGodson/Core.js">Core.js</a></li>
+      <li><a href="http://github.com/OscarGodson/jQuery-Plugin-Skeleton">jQuery-Plugin-Skeleton</a></li>
+    </ol>
+  </nav>
+</aside>
+        </div>
+        <br class="clear">
+         <footer>
+          <p>&copy; Oscar Godson 2011 - &#8734; <span class="alt">Contact me:</span>
+  <span class="icons">
+    <a href="/contact-me.html"><img src="/images/email-16x16.png" alt="Contact me" title="Contact me"></a>
+    <a href="http://twitter.com/oscargodson"><img src="/images/twitter-16x16.png" alt="Follow me on Twitter" title="Follow me on Twitter"></a>
+    <a href="http://github.com/oscargodson"><img src="/images/github-16x16.png" alt="Follow me on GitHub" title="Follow me on GitHub"></a>
+    <a href="https://plus.google.com/101249212022203738924/posts"><img src="/images/google+-16x16.png" alt="Circle me on G+" title="Cirlce me on G+"></a>
+    <a href="http://stackoverflow.com/users/144833/oscar-godson"><img src="/images/stackoverflow-16x16.png" alt="Follow me on StackOverflow" title="Follow me on StackOverflow"></a>
+  </span>
+</p>
+        </footer>
+      </div>
+    </div>
+    <script src="/js/libs/libs.js"></script>
+    <script src="/js/app.js"></script>
+  </body>
+</html>
