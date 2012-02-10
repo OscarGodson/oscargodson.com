@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>OscarGodson.js | Making Vimeo Videos Bigger Than 500px on Tumblr</title>
+    <title>OscarGodson.js | Making Vimeo and YouTube Videos Bigger Than 500px on Tumblr</title>
     <link href="/css/main.css" rel="stylesheet">
     <meta name="description" content="A friend was searching everywhere on how to modify Tumblr's themes so that videos could be larger than 500px which is an arbitrary max size they set so I wrote him a script to do it.">
     <script type="text/javascript">var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-4491651-1']);_gaq.push(['_trackPageview']);(function() {var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);})();</script>
@@ -14,12 +14,12 @@
         </header>
         <div class="left-col">
           <article id="content">
-            <h1>Making Vimeo Videos Bigger Than 500px on Tumblr</h1>
+            <h1>Making Vimeo and YouTube Videos Bigger Than 500px on Tumblr</h1>
             <p>A friend, <a href="http://twitter.com/robalan">@robalan</a>, was searching everywhere on how to modify Tumblr's themes so that videos could be larger than 500px which is an arbitrary max size they set. There were a few scripts out there that were floating around but didn't work and it also looked like Tumblr was blocking jQuery or something because I we couldn't get jQuery working at all on the site. CSS might have worked, but the issue was it didn't scale to 16:9 dynamically.</p>
             <p>In the end, I ended up with this little snippet and it works like a charm:</p>
 <pre class="javascript">/**
- * Version 1.0
- * Makes Vimeo videos on Tumblr larger than the max of 500px that Tumblr forces
+ * Version 1.1
+ * Makes Vimeo and YouTube videos on Tumblr larger than the max of 500px that Tumblr forces
  * Change the 650 to whatever you want, but do NOT add px or %
  * The height, by default, is set to auto which will calculate the 16:9 video size.
  * You can set the height to a static number as well if you want.
@@ -30,7 +30,8 @@
   ,   newVimeoWidth = 650
   ,   newVimeoHeight = 'auto';
   for(x in iframes){
-    if(iframes[x].src &amp;&amp; iframes[x].src.indexOf('player.vimeo.com') &gt; -1){
+    if(iframes[x].src &amp;&amp; iframes[x].src.indexOf('player.vimeo.com') > -1 ||
+       iframes[x].src &amp;&amp; iframes[x].src.indexOf('youtube.com') > -1){
       if(newVimeoHeight == 'auto'){
         newVimeoHeight = ( newVimeoWidth * 9 ) / 16;
       }
