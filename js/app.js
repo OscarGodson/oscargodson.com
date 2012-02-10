@@ -26,6 +26,16 @@ Core.extend('codelorize',function(){
   //Core.push('codelorized');
 },true).load('codelorize');
 
+
+//Should be in a module soon
+$.get('/',function(data){
+  $('.from-here li',data).each(function(i){
+    if(i == 5){ return false; }
+    $('#og-recent-posts ol').append($(this)).find('img').remove();
+  });
+});
+
+
  /**
   * Because i suck:
   * these are aliases that will forward old article hash-bang URLs to my new URLs
