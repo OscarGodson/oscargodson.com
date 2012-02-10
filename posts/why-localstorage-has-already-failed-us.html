@@ -1,19 +1,7 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>OscarGodson.js | Why localStorage Has Already Failed Us</title>
-    <link href="/css/main.css" rel="stylesheet">
-    <meta name="description" content="localStorage had a chance to become something awesome, but browser vendors took the wrong direction by making it sync and capping storage limits.">
-    <script type="text/javascript">var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-4491651-1']);_gaq.push(['_trackPageview']);(function() {var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);})();</script>
-  </head>
-  <body>
-    <div class="wrapper">
-      <div class="container">
-        <header>
-          <require src="/partials/header.html">
-        </header>
-        <div class="left-col">
-          <article id="content">
+---
+layout: default
+title: Why localStorage Has Already Failed Us
+---
             <h1>Why localStorage Has Already Failed Us</h1>
             <p>As some of you guys know, I'm writing a localStorage library that makes it easier to use localStorage and to store objects in localStorage. The library is called storageLocker and it's hosted on Github. While writing it I wanted to add support for limited storage notifications and what I mean by that is, Firefox and Chrome allot you 5MB of data and I was going to make a notification system that will give off a flag for a dev to use to trigger some event like a user prompt to add more data, or a warning that there is no space. I was implementing this and I wanted to find out how a user, like myself, could add more space to their localStorage DBs like they can with WebSQL, cookies, etc.</p>
             <p>After looking and failing to find it i contacted the WebKit team and that's where I got this response:</p>
@@ -76,18 +64,3 @@ request.onsuccess = function(event) {
  
 var results = localStorage.setItem('My candy store database',JSON.stringify(objectStores));</pre>
             <p>Yep, that's it.</p>
-          </article>
-        </div>
-        <div class="right-col">
-          <require src="/partials/sidebar.html">
-        </div>
-        <br class="clear">
-         <footer>
-          <require src="/partials/footer.html">
-        </footer>
-      </div>
-    </div>
-    <script src="/js/libs/libs.js"></script>
-    <script src="/js/app.js"></script>
-  </body>
-</html>
