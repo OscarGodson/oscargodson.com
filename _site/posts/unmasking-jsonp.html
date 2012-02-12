@@ -1,8 +1,19 @@
----
-layout: default
-title: Unmasking JSONP
----
-            <h1>Unmasking JSONP</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OscarGodson.js | Unmasking JSONP</title>
+    <link href="/css/main.css" rel="stylesheet">
+    <script type="text/javascript">var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-4491651-1']);_gaq.push(['_trackPageview']);(function() {var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);})();</script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <header>
+          <a href="/"><h1>OscarGodson.js</h1></a>
+        </header>
+        <div class="left-col">
+          <article id="content">
+                        <h1>Unmasking JSONP</h1>
             <h2>Why</h2>
             <p>This post is about JSONP, or in jQuery you might know it as <code>$.getJSON()</code>. I was trying to find a good tutorial or just a small function to allow me to do JSONP requests without jQuery because I was writing a JavaScript library of my own for a client. After numerous Google and StackOverflow searches I discovered every result was a jQuery <code>$.getJSON()</code> tutorial. I figured I can't be the only one using JSONP outside of jQuery. So, in this tutorial I'll explain what it is, why it works, and writing your own JSONP library to handle it.</p>
             <p></p>
@@ -121,3 +132,42 @@ document.getElementsByTagName("head")[0].appendChild(jsonpScript);</pre>
             <h2>Conclusion</h2>
             <p>So what does this all look like completed? I've <a href="https://github.com/OscarGodson/JSONP">uploaded it to GitHub</a> (feel free to fork it and send pull requests) and here is a <a href="http://jsbin.com/aciku5/">live sample</a> and <a href="http://jsbin.com/aciku5/edit">the code</a> calling my last tweet and a photo from my Flickr stream.</p>
             <p>While this script is actually fairly small (less than 1kb compressed), it's pretty tricky and thats why people just use the jQuery version. The jQuery version does have some other cool features like passing a JS object like <code>{name:'oscar',foo:'bar'}</code> and it modifies the URL to be <code>http://somesite.com?name=oscar&amp;foo=bar&amp;callback=jsonp123456</code>, but that's a whole 'nother post and it's not really needed.</p>
+          </article>
+        </div>
+        <div class="right-col">
+          <aside>
+  <nav id="og-recent-posts">
+    <h2>Recent Posts</h2>
+    <ol></ol>
+  </nav>
+</aside>
+<aside>
+  <nav>
+    <h2>Code</h2>
+    <ol>
+      <li><a href="http://github.com/OscarGodson/jKey">jKey</a></li>
+      <li><a href="http://github.com/OscarGodson/Yodel">Yodel</a></li>
+      <li><a href="http://github.com/OscarGodson/Core.js">Core.js</a></li>
+      <li><a href="http://github.com/OscarGodson/jQuery-Plugin-Skeleton">jQuery-Plugin-Skeleton</a></li>
+    </ol>
+  </nav>
+</aside>
+        </div>
+        <br class="clear">
+         <footer>
+          <p>&copy; Oscar Godson 2011 - &#8734; <span class="alt">Contact me:</span>
+  <span class="icons">
+    <a href="/contact-me.html"><img src="/images/email-16x16.png" alt="Contact me" title="Contact me"></a>
+    <a href="http://twitter.com/oscargodson"><img src="/images/twitter-16x16.png" alt="Follow me on Twitter" title="Follow me on Twitter"></a>
+    <a href="http://github.com/oscargodson"><img src="/images/github-16x16.png" alt="Follow me on GitHub" title="Follow me on GitHub"></a>
+    <a href="https://plus.google.com/101249212022203738924/posts"><img src="/images/google+-16x16.png" alt="Circle me on G+" title="Cirlce me on G+"></a>
+    <a href="http://stackoverflow.com/users/144833/oscar-godson"><img src="/images/stackoverflow-16x16.png" alt="Follow me on StackOverflow" title="Follow me on StackOverflow"></a>
+  </span>
+</p>
+        </footer>
+      </div>
+    </div>
+    <script src="/js/libs/libs.js"></script>
+    <script src="/js/app.js"></script>
+  </body>
+</html>
