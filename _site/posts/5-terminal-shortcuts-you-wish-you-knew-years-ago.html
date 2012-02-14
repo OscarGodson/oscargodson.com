@@ -3,6 +3,8 @@
   <head>
     <title>OscarGodson.js | 5 Terminal Shortcuts You Wish You Knew Years Ago</title>
     <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/mobile.css" rel="stylesheet"  media="screen and (max-device-width: 480px)">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <script type="text/javascript">var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-4491651-1']);_gaq.push(['_trackPageview']);(function() {var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);})();</script>
   </head>
   <body>
@@ -15,11 +17,13 @@
           <article id="content">
                         <h1>5 Terminal Shortcuts You Wish You Knew Years Ago</h1>
             <p>I'm in Terminal throughout every work day. Using it for Git, GitHub, SSH, and more. Until recently though I never took the time to actually learn some major time saving key commands in it.</p>
-            <p><strong>1. Auto Complete - <kbd>tab</kbd></strong><br>By pressing tab during a command Terminal will try to guess what you're going to type. So, for example, if you open terminal and type "cd Des" then press <kbd>tab</kbd>, it should autocomplete it to "cd Desktop". This works for everything and you can keep on chaining it. You could type "cd Des" + <kbd>tab</kbd> then type ";" to end the command then type another command.</p>
-            <p><strong>2. Jump Between Words - <kbd>esc+f</kbd> &amp; <kbd>esc+b</kbd><br></strong>It's a pretty obscure key combo, but it works. If you want to jump to the next word press <kbd>esc+f</kbd> (for "forward") and to go back press <kbd>esc+b</kbd> (for "backward"). There is one caveat however. You can't hold down these buttons. If you do, the "f" or "b" you're pressing will start being typed into the terminal as if you were holding down that key. You need to lift your fingers off the <kbd>esc</kbd> key plus the <kbd>f</kbd> or <kbd>b</kbd> you're pressing and press those both again for it to work.</p>
-            <p><strong>3. Jump To The Start And End Of A Line - <kbd>shift+home</kbd> &amp; <kbd>shift+end</kbd></strong><br>No more holding down the left/right keys and waiting for your cursor to reach the start again to add that comma you forgot. Just press <kbd>shift+home</kbd> to jump to the beginning and <kbd>shift+end</kbd> to jump to the end.</p>
-            <p><strong>4. Clear An Entire Line - ctrl+u</strong><br>Another huge time saver is clearing an entire line at once rather than holding the backspace or delete key down and waiting for all 100 characters you wrote to be deleted. Just type <kbd>ctrl+u</kbd> and voila! It's all gone.</p>
+            <p><strong>1. Auto Complete - <kbd>tab</kbd></strong><br>By pressing tab during a command Terminal will try to guess what you're going to type. So, for example, if you open terminal and type "cd Des" then press <kbd>tab</kbd>, it should autocomplete it to "<code>cd Desktop</code>". This works for everything and you can keep on chaining it. You could type "<code>cd Des</code>" + <kbd>tab</kbd> then type ";" to end the command then type another command.</p>
+            <p><strong>2. Jump Between Words - <kbd>option+f</kbd> &amp; <kbd>option+b</kbd><br></strong>This one requires a settings change in Terminal, but will make your life a lot easier. In Terminal's preferences click the "Settings" tab and on the right side you'll see buttons like "Text", "Window", "Shell", "Keyboard", and "Advanced". Click on "Keyboard". Then on the bottom you'll see a checkbox that says "Use option as a meta key". Check it and you'll now be able to use <kbd>option+f</kbd> and <kbd>option+b</kbd> to jump forward and back word by word.</p>
+            <p><strong>3. Jump To The Start And End Of A Line - <kbd>ctrl+a</kbd> &amp; <kbd>ctrl+e</kbd></strong><br>No more holding down the left/right keys and waiting for your cursor to reach the start again to add that comma you forgot. Just press <kbd>ctrl+a</kbd> to jump to the beginning and <kbd>ctrl+e</kbd> to jump to the end.</p>
+            <p><strong>4. Clear An Entire Line - <kbd>ctrl+u</kbd></strong><br>Another huge time saver is clearing an entire line at once rather than holding the backspace or delete key down and waiting for all 100 characters you wrote to be deleted. Just type <kbd>ctrl+u</kbd> and voila! It's all gone.</p>
             <p><strong>5. Clear Everything After The Cursor -&nbsp;<kbd>ctrl+k</kbd></strong><br>This one snips everything after the current cursor and deletes it. Just move the cursor where you want and press <kbd>ctrl+k</kbd>. Voila!</p>
+
+            <em>Thanks to <a href="http://twitter.com/slumos">@slumos</a> for giving me better suggestions for #2 and #3.</em>
           </article>
         </div>
         <div class="right-col">
