@@ -78,7 +78,8 @@ footer .icons { text-align:right; display:inline-block; vertical-align: middle; 
 
 /* Mobile Styles */
 @media screen and (max-device-width: 480px) {
-  .container { width:310px; padding:0 5px; }
+  header h1 {font-size:35px;}
+  .container { width:296px; padding:0 12px; }
   .left-col,.right-col { width:100%; float:none; }
   .right-col { margin-top:50px; }
   .article-list { padding-left:0; }
