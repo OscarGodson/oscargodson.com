@@ -1,0 +1,60 @@
+---
+layout: default
+title: Picturefill Needs to Die
+---
+
+<h1>Picturefill Needs to Die</h1>
+
+<p>Yesterday <a href="http://scottjehl.com/">Scott Jehl</a> posted <a href="https://github.com/scottjehl/picturefill">a polyfill</a> to support his idea of having a <code>&lt;picture&gt;</code> element with unlimited amounts of <code>&lt;source&gt;</code> elements. It's just honestly a bad idea and I know people agree by talking to them on Twitter and in person, but none have commented who disagree on <a href="http://www.w3.org/community/respimg/">his posts</a>. First, let's look at his code snippet:</p>
+
+<pre class="html">&lt;picture alt="A giant stone face at The Bayon temple in Angkor Thom, Cambodia"&gt;
+  &lt;!-- smallest size first - no @media qualifier --&gt;
+  &lt;source src="http://farm8.staticflickr.com/7144/6547286841_635bbd97e5_m.jpg"&gt;
+  &lt;!-- medium size - send to viewport widths 400px wide and up --&gt;
+  &lt;source src="http://farm8.staticflickr.com/7144/6547286841_635bbd97e5.jpg" media="(min-width: 400px)"&gt;
+  &lt;!-- large size - send to viewport widths 800px wide and up --&gt;
+  &lt;source src="http://farm8.staticflickr.com/7144/6547286841_635bbd97e5_z.jpg" media="(min-width: 800px)"&gt;
+  &lt;!-- extra large size - send to viewport widths 1000px wide and up --&gt;
+  &lt;source src="http://farm8.staticflickr.com/7144/6547286841_635bbd97e5_b.jpg" media="(min-width: 1000px)"&gt;
+  &lt;!-- extra large size - send to viewport widths 1300px wide and up --&gt;
+  &lt;source src="http://farm8.staticflickr.com/7144/6547286841_c6160b34e2_o.jpg" media="(min-width: 1200px)"&gt;
+  &lt;!-- Fallback content for non-JS or non-media-query-supporting browsers. Same img src as the initial, unqualified source element. --&gt;
+  &lt;noscript&gt;&lt;img src="http://farm8.staticflickr.com/7144/6547286841_635bbd97e5_m.jpg" alt="A giant stone face at The Bayon temple in Angkor Thom, Cambodia"&gt;&lt;/noscript&gt;
+&lt;/picture&gt;</pre>
+
+<p>What is this scary looking markup you say? It's <em>one</em> image. Let's repeat that, <em>one</em>, <em>single</em> image.</p>
+
+<p>The problem he's trying to solve isn't the same as <code>&lt;video&gt;</code> or <code>&lt;audio&gt;</code> tags as he tries to make it sound. He's trying to solve the problem that on small devices you don't want to load a large image which is a real issue. The reason why <code>&lt;video&gt;</code> and <code>&lt;audio&gt;</code> have terrible semantics where you need <code>&lt;source&gt;</code> elements is because browser vendors couldn't get get their shit together and just agree on a format. So, as a hack, they implemented these <code>&lt;source&gt;</code> tags so that browsers will skip tags one by one and keep going down the DOM until it knows how to render the format of one of them.</p>
+
+<p>Those tags should have been implemented such as <code>&lt;img&gt;</code> tags were like <code>&lt;video width="500" src="myvideo.mp4"&gt;</code>, but as I said, browser vendors couldn't agree. The issue Scott is trying to fix is completely different, yet tries to solve it the same way as these other tags tried to solve a different problem.</p>
+
+<h2>A better solution</h2>
+
+<p>First step in finding a solution to this is finding the real problem. The problem really isn't the screen resolution when you get down to it. If it was purely screen resolution we could simply load the highest resolution image we had and use CSS to set the width. We don't do this because of connection speed, not because of screen resolution. If you're on a phone and on 3G or a computer with DSL, or god forbid dial up, who gives a shit what your resolution is, <em>I just want to see the fuckin' content</em>. Don't make me wait for your stupid high-res picture just because my tablet has a 1280 screen but is downloading at &lt;1MB down.</p>
+
+<p>Let's try to solve this for real. We'd need a JavaScript API to return the connection speed. We then could decide what type of image to display. Here's what this could look like (jQuery is used just to keep the example clean):</p>
+
+<pre class="javascript">//If the connection speed in &gt;5MB
+if(window.connection.speed &gt; 5120 &amp;&amp; screen.pixelRatio &gt;= 2){
+  //show high res
+}
+else if(window.connection.speed &lt;= 5120 &amp;&amp; screen.pixelRatio &gt;= 2){
+  //If we're on a slow connection, but you support high res, wait until high-res is done loading, then replace it with the low res one.
+  $(high_res_version).appendTo('#hidden_loader_area').load(function(){
+    $(low_res_one_on_page).replaceWith(high_res_version);
+  });
+}
+else{
+  //show low res
+}
+</pre>
+
+<p>This is easy enough, but we don't want to have to require you to use JavaScript to show a high-res image, but we also don't want to force you to have half a dozen <code>&lt;source&gt;</code> tags to the exact same image with a different <code>src</code>. We could do this by using the <code>media</code> attribute which Scott suggested, but add a <code>then</code> and <code>({attr}={value})</code> syntax. Here'd be an example of this:</p>
+
+<pre class="html">&lt;img src="low-res.png" media="only screen and (min-device-pixel-ratio: 2) then (src=high-res.png)"/&gt;</pre>
+
+<p>This is saying almost nearly the same thing as above, but with pure HTML. You have less control, but it's still semantic and still would work for <em>most</em> cases. Here we load the lower resolution image via the normal <code>src</code> attribute. Then, the <code>media</code> attribute would (in the background) check that the device is a <code>screen</code> with a <code>pixel-ratio</code> of <code>2</code> and if so <code>then</code> swap the <code>src</code> with <code>high-res.png</code> when <code>high-res.png</code> was fully loaded. The end user would just see that the image got &ldquo;better&rdquo;.</p>
+
+<h2>Conclusion</h2>
+
+<p>For god sakes do not send this to the W3C and if it makes it that far, don't make it a standard. It's bad for everyone. No one wants to hand code that and we don't need even more complexity to the DOM and more DOM to redraw as JavaScript programmers. Let's keep <em>presentation</em> separate from the <em>structure</em>. Image resolutions are purely presentational so let's keep it out of our DOM and let JS, CSS, or media type attributes handle the dynamics of screen resolution and connection speeds.</p>
