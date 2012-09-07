@@ -76,6 +76,8 @@ footer .icons { text-align:right; display:inline-block; vertical-align: middle; 
 .article-list li { position:relative; list-style:disc; }
 .article-list img { position:absolute; padding-left:5px; }
 
+.fit-img { width: 100%; }
+
 /* Mobile Styles */
 @media screen and (max-device-width: 480px) {
   header h1 {font-size:35px;}

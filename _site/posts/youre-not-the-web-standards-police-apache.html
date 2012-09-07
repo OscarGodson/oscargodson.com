@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OscarGodson.js | You&rsquo;re Not The Web Standards Police, Apache</title>
+    <link href="/css/main.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <script type="text/javascript">var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-4491651-1']);_gaq.push(['_trackPageview']);(function() {var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);})();</script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <header>
+          <a href="/"><h1>OscarGodson.js</h1></a>
+        </header>
+        <div class="left-col">
+          <article id="content">
+            <h1>You&rsquo;re Not The Web Standards Police, Apache</h1>
+
+<p><img class="fit-img" src="https://img.skitch.com/20120907-fp9d8itpwi8jg1fqrq6tcbiq7u.png" alt="" /></p>
+
+<p>I saw the above <a href="https://github.com/apache/httpd/commit/a381ff35fa4d50a5f7b9f64300dfd98859dee8d0">commit</a> popup in my <a href="https://twitter.com/paulrouget/status/243679205961900032">Twitter feed</a> today. What the above code does is ignores IE10&rsquo;s Do Not Track (DNT) option. If you don&rsquo;t know what DNT is:</p>
+
+<blockquote><p>Do Not Track is a technology and policy proposal that enables users to opt out of tracking by websites they do not visit, including analytics services, advertising networks, and social platforms. At present few of these third parties offer a reliable tracking opt out, and tools for blocking them are neither user-friendly nor comprehensive. Much like the popular Do Not Call registry, Do Not Track provides users with a single, simple, persistent choice to opt out of third-party web tracking.</p></blockquote>
+
+<p>(source: <a href="http://donottrack.us">http://donottrack.us</a>)</p>
+
+<p>Apache is browser sniffing for IE10 because the spec says that DNT shouldn&rsquo;t be turned on by default and IE10 has an option pre-selected, <strong>not</strong> turned on, but pre-selected to be enabled during &ldquo;express install&rdquo;. They somehow have missed this and even with others mentioning this they come up with other grand reasons of why Microsoft did it this way.</p>
+
+<p>The truth of the matter is, they <em>are</em> following the [unfinished] spec and even if they weren&rsquo;t why is Apache punishing the users of IE? Who cares what Microsoft&rsquo;s thinking is. Deal with Microsoft on fixing this, but don&rsquo;t ignore user choice because of the browser they use. Now, users will think they have DNT on, yet little do they know, Apache decided to screw them over because IE didn&rsquo;t do it a way Apache deems acceptable and therefore no one gets DNT on IE10. It&rsquo;s the thinking of web developers in the 90s all over again.</p>
+
+<p>From a user experience perspective I completely agree with Microsoft on how this was implemented and don&rsquo;t see anything wrong. If they would have hid it away in some advanced preference panel no average user, which is the majority of IE users, would ever see or know about DNT. What use is a feature if no one knows it exists? If they keep adding steps into &ldquo;express&rdquo; installations users will ignore the steps and just click &ldquo;next&rdquo; until setup is complete and ignore all the steps. Does nobody remember Vista? <a href="https://img.skitch.com/20120907-tu8m3msxk7sngf61188f8hxm7a.png">In the current implementation</a> they get one screen of all the settings automatically set and an option to change any of them. Users are far more likely to read one bulleted list over 3 or more pages of setup instructions.</p>
+
+<p>My biggest concern with all of this is the fact that Apache thinks its OK to be the standards police like this. It&rsquo;s making the conscience decision to interpret a spec and give punishment to a vendor for not following it exactly (I think Microsoft did, but thats beside the point). That&rsquo;s just not how we&rsquo;ve all decided to do the whole standards thing. We decided that we were going to stop with with the &ldquo;this site looks best viewed in…&rdquo; banners and instead organically get vendors to follow along, not <em>force</em> them into following it and punishing users while they&rsquo;re at it.</p>
+
+<p>So, Apache, I have one simple request, can you please just give users what they asked for and stop with your self righteousness?</p>
+
+          </article>
+        </div>
+        <div class="right-col">
+          <aside>
+  <nav id="og-recent-posts">
+    <h2>Recent Posts</h2>
+    <ol></ol>
+  </nav>
+</aside>
+<aside>
+  <nav>
+    <h2>Code</h2>
+    <ol>
+      <li><a href="http://epiceditor.com">EpicEditor</a></li>
+      <li><a href="http://html6spec.com">HTML6</a></li>
+      <li><a href="http://github.com/OscarGodson/jKey">jKey</a></li>
+      <li><a href="http://github.com/OscarGodson/Yodel">Yodel</a></li>
+      <li><a href="http://github.com/OscarGodson/Core.js">Core.js</a></li>
+      <li><a href="http://github.com/OscarGodson/jQuery-Plugin-Skeleton">jQuery-Plugin-Skeleton</a></li>
+    </ol>
+  </nav>
+</aside>
+
+        </div>
+        <br class="clear">
+         <footer>
+          <p>&copy; Oscar Godson 2011 - &#8734; <span class="alt">Contact me:</span>
+  <span class="icons">
+    <a href="/contact-me.html"><img src="/images/email-16x16.png" alt="Contact me" title="Contact me"></a>
+    <a href="http://twitter.com/oscargodson"><img src="/images/twitter-16x16.png" alt="Follow me on Twitter" title="Follow me on Twitter"></a>
+    <a href="http://github.com/oscargodson"><img src="/images/github-16x16.png" alt="Follow me on GitHub" title="Follow me on GitHub"></a>
+    <a href="https://plus.google.com/101249212022203738924/posts"><img src="/images/google+-16x16.png" alt="Circle me on G+" title="Cirlce me on G+"></a>
+    <a href="http://stackoverflow.com/users/144833/oscar-godson"><img src="/images/stackoverflow-16x16.png" alt="Follow me on StackOverflow" title="Follow me on StackOverflow"></a>
+  </span>
+</p>
+        </footer>
+      </div>
+    </div>
+    <script src="/js/libs/libs.js"></script>
+    <script src="/js/app.js"></script>
+  </body>
+</html>
