@@ -1,222 +1,70 @@
+@import url(http://fonts.googleapis.com/css?family=Oxygen:400,300,700);
+.clear { clear: both; }
 body {
-  margin:0;
-  padding:0;
-  font-family:helvetica,sans-serif;
-  font-size:85%;
-  color:#222;
-  border-top:10px solid #000;
+  background: #fcfcfc;
+  font-family: 'Oxygen', Helvetica, arial, sans-serif;
+  line-height: 1.7;
+  font-size: 18px;
+  color: #222;
+  margin: 0;
 }
-
-/* Base */
-h1 { font-size:28px; }
-h2 { font-size:22px; border-bottom:1px dashed #ccc; padding-bottom:5px; }
-h3 { font-size:20px; margin-bottom:0; }
-h4 { font-size:18px; }
-h5 { font-size:16px; }
-h6 { font-size:14px; }
-p { line-height:1.4em; }
-pre { /*background:#f8f8f8; border:1px solid #ccc;*/ padding:6px 10px; font-size:13px; overflow-x:auto; }
-blockquote { background:#f8f8f8; padding:7px 20px; }
-li { margin:5px 0; }
-
-a:link { color:#09d; text-decoration:none; }
-a:visited { color:#0078ad; }
-a:hover { color:#2EB4D9; }
-a:active { position:relative; top:1px; }
-q { background:#D9E0FC; padding:2px; }
-hr { border:0; border:1px dotted #ccc;  }
-code { background:#FFF5CC; color:#666; padding:2px; }
-del { color:#c00; }
-ins { color:#0a0; }
-cite { color:#222; display:block; margin-top:10px; }
-cite:before { content:'- '; }
-
-ul,ol { padding-left:15px; }
-
-.clear { clear:both; }
-
-/*footer,header { background:#FFF5CC; width:100%; color:#666; padding:20px 0; border-bottom:3px double #F5DE7F; }*/
-
-
-/* Special */
-header h1 {
-  font-size:40px;
-  margin-bottom:35px;
+#wrapper {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 30px;
 }
-
-a h1 { color:#222; }
-
-article > h1{
-  margin-top:0;
+#main-nav {
+  background: #222;
+  color: #fcfcfc;
+  padding: 12px;
+  font-size: 15px;
 }
-
-h3 + p { margin-top:5px; }
-article + h1 { padding-top:0; }
-
-
-.container {
-  width:900px;
-  margin:0 auto;
-  position:relative;
+#main-nav h1 {
+  margin: 0;
+  width: 25%;
+  float: left;
+  font-size: 15px;
 }
-
-.left-col { width:600px; float:left; }
-.right-col { width:270px; float:right; }
-.node-name { color:#ddd; }
-
-aside { background:#FFF5CC; padding:10px 30px; margin-bottom:15px; border-radius:3px; }
-  aside h2 { margin-top:10px; }
-  aside ol { list-style:disc; padding:0; }
-      aside li { margin:10px 0; }
-
-header { padding:5px 0; }
-footer { padding:15px 0 5px; }
-footer .icons { text-align:right; display:inline-block; vertical-align: middle; }
-
-.article-list li { position:relative; list-style:disc; }
-.article-list img { position:absolute; padding-left:5px; }
-
-.fit-img { width: 100%; }
-
-/* Mobile Styles */
-@media screen and (max-device-width: 480px) {
-  header h1 {font-size:35px;}
-  .container { width:296px; padding:0 12px; }
-  .left-col,.right-col { width:100%; float:none; }
-  .right-col { margin-top:50px; }
-  .article-list { padding-left:0; }
-  .article-list li { list-style:none; }
-  .article-list li a { background:#fdf6e3; border-radius:3px; display:block; padding:10px 7px; }
-  .article-list img, .article-list .source { display:none; }
+#main-nav ul {
+  float: right;
+  margin: 0;
+  padding: 0;
 }
-
-/**
- * For colored code snippets
- * Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmail.com>
- */
-pre {
-  display: block; padding: 0.5em;
-  background: #fdf6e3; color: #657b83;
+#main-nav li {
+  display: block;
+  float: left;
+  margin-left: 15px;
 }
-
-pre .comment,
-pre .template_comment,
-pre .diff .header,
-pre .doctype,
-pre .lisp .string,
-pre .javadoc {
-  color: #93a1a1;
-  font-style: italic;
+#main-nav li:hover {
 }
-
-pre .keyword,
-pre .css .rule .keyword,
-pre .winutils,
-pre .javascript .title,
-pre .method,
-pre .addition,
-pre .css .tag,
-pre .lisp .title {
-  color: #859900;
-}
-
-pre .number,
-pre .command,
-pre .string,
-pre .tag .value,
-pre .phpdoc,
-pre .tex .formula,
-pre .regexp,
-pre .hexcolor {
-  color: #2aa198;
-}
-
-pre .title,
-pre .localvars,
-pre .function .title,
-pre .chunk,
-pre .decorator,
-pre .builtin,
-pre .built_in,
-pre .lisp .title,
-pre .identifier,
-pre .title .keymethods,
-pre .id {
-  color: #268bd2;
-}
-
-pre .tag .title,
-pre .rules .property,
-pre .django .tag .keyword {
-  font-weight: bold;
-}
-
-pre .attribute,
-pre .variable,
-pre .instancevar,
-pre .lisp .body,
-pre .smalltalk .number,
-pre .constant,
-pre .class .title,
-pre .parent,
-pre .haskell .label {
-  color: #b58900;
-}
-
-pre .preprocessor,
-pre .pi,
-pre .shebang,
-pre .symbol,
-pre .diff .change,
-pre .special,
-pre .keymethods,
-pre .attr_selector,
-pre .important,
-pre .subst,
-pre .cdata {
-  color: #cb4b16;
-}
-
-pre .deletion {
-  color: #dc322f;
-}
-
-pre .tex .formula {
-  background: #eee8d5;
-}
-
-/**
- * For keyboard shortcuts
- * Original style from: https://github.com/michaelhue/keyscss
- */
- kbd, .key {
-  display: inline;
-  display: inline-block;
-  min-width: 1em;
-  padding: .2em .3em;
-  font: normal .85em/1 "Lucida Grande", Lucida, Arial, sans-serif;
-  text-align: center;
+#main-nav a {
+  color: #fcfcfc;
   text-decoration: none;
-  -moz-border-radius: .3em;
-  -webkit-border-radius: .3em;
-  border-radius: .3em;
-  border: none;
-  cursor: default;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
 }
-kbd[title], .key[title] {
-  cursor: help;
+#big-image {
+  height: 250px;
+  overflow: hidden;
 }
-
-kbd {
-  background: rgb(250, 250, 250);
-  background: -moz-linear-gradient(top, rgb(210, 210, 210), rgb(255, 255, 255));
-  background: -webkit-gradient(linear, left top, left bottom, from(rgb(210, 210, 210)), to(rgb(255, 255, 255)));
-  color:  rgb(50, 50, 50);
-  text-shadow: 0 0 2px rgb(255, 255, 255);
-  -moz-box-shadow: inset 0 0 1px rgb(255, 255, 255), inset 0 0 .4em rgb(200, 200, 200), 0 .1em 0 rgb(130, 130, 130), 0 .11em 0 rgba(0, 0, 0, .4), 0 .1em .11em rgba(0, 0, 0, .9);
-  -webkit-box-shadow: inset 0 0 1px rgb(255, 255, 255), inset 0 0 .4em rgb(200, 200, 200), 0 .1em 0 rgb(130, 130, 130), 0 .11em 0 rgba(0, 0, 0, .4), 0 .1em .11em rgba(0, 0, 0, .9);
-  box-shadow: inset 0 0 1px rgb(255, 255, 255), inset 0 0 .4em rgb(200, 200, 200), 0 .1em 0 rgb(130, 130, 130), 0 .11em 0 rgba(0, 0, 0, .4), 0 .1em .11em rgba(0, 0, 0, .9);
+#big-image img {
+  position: relative;
+  top: -25px;
+}
+.content {
+  margin: 50px 0 0 0;
+}
+.content h1 {
+  font-size: 40px;
+  line-height: 1.5;
+}
+.content img {
+  max-width: 700px;
+}
+pre {
+  background: #eee;
+  padding: 10px;
+  overflow: auto;
+}
+blockquote {
+  background: #eee;
+  padding: 10px;
 }
