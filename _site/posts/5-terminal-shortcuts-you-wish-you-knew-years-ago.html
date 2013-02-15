@@ -3,6 +3,7 @@
   <head>
     <title>OscarGodson.js | 5 Terminal Shortcuts You Wish You Knew Years Ago</title>
     <link href="/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/monokai.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <script type="text/javascript">var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-4491651-1']);_gaq.push(['_trackPageview']);(function() {var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);})();</script>
   </head>
@@ -11,8 +12,8 @@
     <nav id="main-nav">
   <a href="/"><h1 id="logo">OscarGodson.js</h1></a>
   <ul>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="/about-me.html">About</a></li>
+    <li><a href="/contact-me.html">Contact</a></li>
   </ul>
   <br class="clear">
 </nav>
@@ -21,7 +22,7 @@
 </header>
 
     <div id="wrapper">
-      <articlei class="content">
+      <article class="content">
                     <h1>5 Terminal Shortcuts You Wish You Knew Years Ago</h1>
             <p>I'm in Terminal throughout every work day. Using it for Git, GitHub, SSH, and more. Until recently though I never took the time to actually learn some major time saving key commands in it.</p>
             <p><strong>1. Auto Complete - <kbd>tab</kbd></strong><br>By pressing tab during a command Terminal will try to guess what you're going to type. So, for example, if you open terminal and type "cd Des" then press <kbd>tab</kbd>, it should autocomplete it to "<code>cd Desktop</code>". This works for everything and you can keep on chaining it. You could type "<code>cd Des</code>" + <kbd>tab</kbd> then type ";" to end the command then type another command.</p>
@@ -40,25 +41,16 @@
       <a href="http://twitter.com/oscargodson"><img src="/images/twitter-16x16.png" alt="Follow me on Twitter" title="Follow me on Twitter"></a>
       <a href="http://github.com/oscargodson"><img src="/images/github-16x16.png" alt="Follow me on GitHub" title="Follow me on GitHub"></a>
       <a href="https://plus.google.com/101249212022203738924/posts"><img src="/images/google+-16x16.png" alt="Circle me on G+" title="Cirlce me on G+"></a>
-      <a href="http://stackoverflow.com/users/144833/oscar-godson"><img src="/images/stackoverflow-16x16.png" alt="Follow me on StackOverflow" title="Follow me on StackOverflow"></a>
     </span>
   </p>
 </footer>
 
-
-        <!--<footer>
-  <p>&copy; Oscar Godson 2011 - &#8734; <span class="alt">Contact me:</span>
-    <span class="icons">
-      <a href="/contact-me.html"><img src="/images/email-16x16.png" alt="Contact me" title="Contact me"></a>
-      <a href="http://twitter.com/oscargodson"><img src="/images/twitter-16x16.png" alt="Follow me on Twitter" title="Follow me on Twitter"></a>
-      <a href="http://github.com/oscargodson"><img src="/images/github-16x16.png" alt="Follow me on GitHub" title="Follow me on GitHub"></a>
-      <a href="https://plus.google.com/101249212022203738924/posts"><img src="/images/google+-16x16.png" alt="Circle me on G+" title="Cirlce me on G+"></a>
-      <a href="http://stackoverflow.com/users/144833/oscar-godson"><img src="/images/stackoverflow-16x16.png" alt="Follow me on StackOverflow" title="Follow me on StackOverflow"></a>
-    </span>
-  </p>
-</footer>
-
-    <script src="/js/libs/libs.js"></script>
-    <script src="/js/app.js"></script>-->
+    <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+    <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+    <script>
+      $('pre').each(function (i, e) {
+        hljs.highlightBlock(e);
+      });
+    </script>
   </body>
 </html>
