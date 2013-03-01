@@ -3,18 +3,28 @@
   <head>
     <title>OscarGodson.js | You&rsquo;re Not The Web Standards Police, Apache</title>
     <link href="/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/monokai.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <script type="text/javascript">var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-4491651-1']);_gaq.push(['_trackPageview']);(function() {var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);})();</script>
   </head>
   <body>
-    <div class="wrapper">
-      <div class="container">
-        <header>
-          <a href="/"><h1>OscarGodson.js</h1></a>
-        </header>
-        <div class="left-col">
-          <article id="content">
-            <h1>You&rsquo;re Not The Web Standards Police, Apache</h1>
+
+    <nav id="main-nav">
+  <a href="/"><h1 id="logo">OscarGodson.js</h1></a>
+  <ul>
+    <li><a href="http://github.com/oscargodson">Code</a></li>
+    <li><a href="/about-me.html">About</a></li>
+    <li><a href="/contact-me.html">Contact</a></li>
+  </ul>
+  <br class="clear">
+</nav>
+<header id="big-image">
+  <img src="/images/bg.jpeg" width="100%">
+</header>
+
+    <div id="wrapper">
+      <article class="content">
+        <h1>You&rsquo;re Not The Web Standards Police, Apache</h1>
 
 <p><img class="fit-img" src="https://img.skitch.com/20120907-fp9d8itpwi8jg1fqrq6tcbiq7u.png" alt="" /></p>
 
@@ -34,45 +44,25 @@
 
 <p>So, Apache, I have one simple request, can you please just give users what they asked for and stop with your self righteousness?</p>
 
-          </article>
-        </div>
-        <div class="right-col">
-          <aside>
-  <nav id="og-recent-posts">
-    <h2>Recent Posts</h2>
-    <ol></ol>
-  </nav>
-</aside>
-<aside>
-  <nav>
-    <h2>Code</h2>
-    <ol>
-      <li><a href="http://epiceditor.com">EpicEditor</a></li>
-      <li><a href="http://html6spec.com">HTML6</a></li>
-      <li><a href="http://github.com/OscarGodson/jKey">jKey</a></li>
-      <li><a href="http://github.com/OscarGodson/Yodel">Yodel</a></li>
-      <li><a href="http://github.com/OscarGodson/Core.js">Core.js</a></li>
-      <li><a href="http://github.com/OscarGodson/jQuery-Plugin-Skeleton">jQuery-Plugin-Skeleton</a></li>
-    </ol>
-  </nav>
-</aside>
-
-        </div>
-        <br class="clear">
-         <footer>
-          <p>&copy; Oscar Godson 2011 - &#8734; <span class="alt">Contact me:</span>
-  <span class="icons">
-    <a href="/contact-me.html"><img src="/images/email-16x16.png" alt="Contact me" title="Contact me"></a>
-    <a href="http://twitter.com/oscargodson"><img src="/images/twitter-16x16.png" alt="Follow me on Twitter" title="Follow me on Twitter"></a>
-    <a href="http://github.com/oscargodson"><img src="/images/github-16x16.png" alt="Follow me on GitHub" title="Follow me on GitHub"></a>
-    <a href="https://plus.google.com/101249212022203738924/posts"><img src="/images/google+-16x16.png" alt="Circle me on G+" title="Cirlce me on G+"></a>
-    <a href="http://stackoverflow.com/users/144833/oscar-godson"><img src="/images/stackoverflow-16x16.png" alt="Follow me on StackOverflow" title="Follow me on StackOverflow"></a>
-  </span>
-</p>
-        </footer>
-      </div>
+      </article>
     </div>
-    <script src="/js/libs/libs.js"></script>
-    <script src="/js/app.js"></script>
+    <footer>
+  <p>&copy; Oscar Godson 2011 - &#8734; <span class="alt">Contact me:</span>
+    <span class="icons">
+      <a href="/contact-me.html"><img src="/images/email-16x16.png" alt="Contact me" title="Contact me"></a>
+      <a href="http://twitter.com/oscargodson"><img src="/images/twitter-16x16.png" alt="Follow me on Twitter" title="Follow me on Twitter"></a>
+      <a href="http://github.com/oscargodson"><img src="/images/github-16x16.png" alt="Follow me on GitHub" title="Follow me on GitHub"></a>
+      <a href="https://plus.google.com/101249212022203738924/posts"><img src="/images/google+-16x16.png" alt="Circle me on G+" title="Cirlce me on G+"></a>
+    </span>
+  </p>
+</footer>
+
+    <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+    <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+    <script>
+      $('pre').each(function (i, e) {
+        hljs.highlightBlock(e);
+      });
+    </script>
   </body>
 </html>

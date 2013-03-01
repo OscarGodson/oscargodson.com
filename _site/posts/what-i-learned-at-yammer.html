@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OscarGodson.js | What I Learned At Yammer</title>
+    <link href="/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/monokai.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <script type="text/javascript">var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-4491651-1']);_gaq.push(['_trackPageview']);(function() {var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);})();</script>
+  </head>
+  <body>
+
+    <nav id="main-nav">
+  <a href="/"><h1 id="logo">OscarGodson.js</h1></a>
+  <ul>
+    <li><a href="http://github.com/oscargodson">Code</a></li>
+    <li><a href="/about-me.html">About</a></li>
+    <li><a href="/contact-me.html">Contact</a></li>
+  </ul>
+  <br class="clear">
+</nav>
+<header id="big-image">
+  <img src="/images/bg.jpeg" width="100%">
+</header>
+
+    <div id="wrapper">
+      <article class="content">
+        <h1>What I Learned At Yammer</h1>
+
+<p>Today marks my last day at <a href="http://yammer.com">Yammer</a>. It's been a hell of a ride. It's bittersweet. I'm leaving Yammer to be back in <a href="http://en.wikipedia.org/wiki/Nicknames_of_Portland,_Oregon#PDX">PDX</a> to be near family and long time friends. I'll be starting at <a href="http://simple.com">Simple</a> as a front-end dev where I'll be changing banking for the better.</p>
+
+<p>While at Yammer I learned a lot. Not just about programming, but about running an engineering team and project management as well. Yammer not only made me a more skilled programmer, but a smart programmer. I decided to write up some of the things I learned outside of just programming that I'll probably bring with me to every company I work with in the future.</p>
+
+<h2>Test all the things</h2>
+
+<p>I can't stress this enough. If there's one thing I learned at Yammer it's that you need to test everything, and by everything I mean, <em>everything</em>. It's not just about getting your users to come back or to engage with your software more. That's a large piece of it, but it's also about saving countless engineering time. A lot of people I talk to who don't do any testing say that they feel their intuition is doing fine because they can see that the overall new and returning users are increasing. What they're missing is that, how do you know what feature is driving those gains? Which features are hardly even being used? Could you increase your new users by 2x, 4x, 100x, what it's increasing at now?</p>
+
+<p>I spent some time trying to think of a good analogy of this problem and this is the best I could come up with:</p>
+
+<blockquote><p>Not testing your software is like playing darts in a pitch black room. When you throw the dart you will be able to hear if it hit the target or hit the wall and fell to the ground. What you can't really do is adjust your throw. You don't know <em>where</em> you hit the target when you did, just that you did. Testing is like turning on the lights. Now you can see the target. You might still miss here and there, but if you miss you can readjust.</p></blockquote>
+
+<p>Testing also allows you to figure out what features to kill before you spend too much time on them. You might have this idea that some feature is going to be super awesome and everyone and their dog will want to use it. So, you spend all this time building it out and you put it into the wild. Overall it gets good reviews from a vocal minority (probably power users). What you might not know is that most people don't really use it or don't understand it. Now you're spending 90% of your time making features for &lt;10% of your users, or not, but you really have no idea. This feature could be expensive time wise to keep up. Maybe it has a lot of support tickets or is unreliable for some reason.</p>
+
+<p>TL;DR Testing allows you to move faster, make better products for consumers and keeps engineers from wasting time with features nobody uses.</p>
+
+<h2>Unit test all the things</h2>
+
+<p>I didn't get how important unit tests were until I had to refactor a large chunk of code for a project. I had absolutely no clue what I could and couldn't remove or change and even if I thought I <em>could</em> remove or change it I wasn't sure if I had broken anything somewhere else in the product. Around the same time there was a huge push at Yammer on the front-end side to put tests on everything. It became a rule that you can't ship it unless you have tests. Looking back I wish that was the rule from the start.</p>
+
+<p>A lot of people think tests slow you down and it's over hyped. It's not. Sure, making a small bug fix that's a 1 line change and having to write 12-15 lines of test code seems overkill and a waste, but you get all that time back tenfold when someone goes "Huh, wonder if we need this line here?" deletes it, and the "<code>preventLaunch()</code> is called to prevent accidental nuclear weapon launches" test fails. Not only does the next guy know it's important and why, if the code needs to be refactored they know what they're missing and can make sure the app runs as it did before.</p>
+
+<h2>Autonomy and trust are a must</h2>
+
+<p>If you're the owner, manager, etc, let your employees do their job. Hire engineers you respect and leave them alone. If you can't trust them to do their best work and work that's acceptable for your product you shouldn't have hired them. Simple as that.</p>
+
+<p>Instead spend your time helping them break down obstacles and blockers. Make them happy. As long as they get their work done, don't question when they come and go or if they watch cat videos and browse Reddit /r/wtf all day. Some of the best engineers I know work only a few hours a day, but get more done than others working 8hrs. Being creative is hard and giving them more rules kills creative thinking.</p>
+
+<h2>No limit on vacation isn't as great as you would think</h2>
+
+<p>Originally Yammer had no policy on vacation. They called it the "take what you need" policy. We all rejoiced. I thought it was amazing and it's a great selling point when trying to recruit people. The problem is nobody takes vacation when they can't lose it and there's no pressure to use it. When you do use it there's no limit so you have to decide what's acceptable. Obviously, not every employee thinks this way, but when we introduced a three week vacation policy people were actually happy including me.</p>
+
+<p>My suggestion to startups thinking about unlimited vacation? Instead, give 3-4 weeks of vacation, but if an employee wants more just give it to them.</p>
+
+<h2>Actively try to prevent burnout</h2>
+
+<p>Burnout is real and it's deadly to your company. Yammer was great about this. We were regularly asked how busy we were and how we felt about our workload. We were asked if we felt others were feeling overworked too. If you were feeling overworked it got fixed.</p>
+
+<p>Your employees shouldn't have to work long hours on a daily basis. If your employee is working long hours to complete a projects regularly you're mismanaging the projects. The choice is pretty easy actually: would you rather have an employee for 1 year who worked 12-14hr days but burned out, was unhappy and quit, or an employee for 5 years plus who worked half as many hours, but was happy and working optimally? The hours don't matter it's what they produce.</p>
+
+<h2>And lastly, <em>use Yammer</em></h2>
+
+<p>I had never used Yammer until I started at Yammer. In fact, to be honest, I was skeptical about working at Yammer at first because I wasn't sure how interesting it would even be. "It's just some crappy Facebook clone", I thought. My friends there insisted it wasn't, so I decided to give it a shot.</p>
+
+<p>The first day it became pretty obvious just how useful it was. All our docs were on there. On-boarding processes, tips for new employees, everything. It was all where I could find it. I could message HR about general HR questions, in the public feed, get responses and months later someone else would drop by and say thanks or expand on it. People don't realize just how useful it is and once you start using it you forget how useful it is until you don't have it anymore and you're jumping between a dozen different products with fragmented conversations between email, chat, and other products. Yammer pulls it all together.</p>
+
+<p>It's also extremely useful for project management. At Yammer we'd make a group for each team (engineering, front-end, rails, etc), as well as groups for each project (inbox, online now, etc). This made it so we could put specs, comps and the conversations around those in a central location where we could easily find it. This also killed the need for doing stand ups, weekly team meetings or SCRUM. We could see what everyone was working on at any time in any project. It's also <em>extremely</em> useful to be able to share a Yammer thread to show past decisions about the product and why those choices were made.</p>
+
+<p>Another added bonus is there's a great API. You can have things auto post things like deploys. "Oscar is deploying release XXX to production", for example. Or, if your spec fails, "Oscar broke the build!". Super handy because now you can have an archivable conversation about these things. Maybe that production deploy was failed and brought the site down. 6 months later someone could link to that thread.</p>
+
+<h2>That's all folks!</h2>
+
+<p>There's so much more I learned, but I'm thinking about expanding on these individual topics, or things I didn't cover in separate posts. Yammer was the first job where I came out and felt like I had more to offer my next team aside from just better programming skills. If you have any questions about any of these things feel free to contact me.</p>
+
+      </article>
+    </div>
+    <footer>
+  <p>&copy; Oscar Godson 2011 - &#8734; <span class="alt">Contact me:</span>
+    <span class="icons">
+      <a href="/contact-me.html"><img src="/images/email-16x16.png" alt="Contact me" title="Contact me"></a>
+      <a href="http://twitter.com/oscargodson"><img src="/images/twitter-16x16.png" alt="Follow me on Twitter" title="Follow me on Twitter"></a>
+      <a href="http://github.com/oscargodson"><img src="/images/github-16x16.png" alt="Follow me on GitHub" title="Follow me on GitHub"></a>
+      <a href="https://plus.google.com/101249212022203738924/posts"><img src="/images/google+-16x16.png" alt="Circle me on G+" title="Cirlce me on G+"></a>
+    </span>
+  </p>
+</footer>
+
+    <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+    <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+    <script>
+      $('pre').each(function (i, e) {
+        hljs.highlightBlock(e);
+      });
+    </script>
+  </body>
+</html>
