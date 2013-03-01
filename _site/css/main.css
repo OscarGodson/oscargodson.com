@@ -54,6 +54,14 @@ a img {
   position: relative;
   top: -25px;
 }
+.article-list {
+  list-style: disc;
+  margin-left: 0;
+  padding-left: 0;
+}
+.article-list li {
+  padding-bottom: 10px;
+}
 .content {
   max-width: 700px;
   margin: 0 auto;
@@ -93,7 +101,7 @@ pre .constant {
 }
 blockquote {
   background: #eee;
-  padding: 10px;
+  padding: 1px 15px;
 }
 /* *
  *  Because, fuck. Fluid widths don't solve everything.
